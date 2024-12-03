@@ -1,0 +1,29 @@
+<!-- ingrediente-list.component.html -->
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Ingredientes</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="addIngrediente()">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          Añadir
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let ingrediente of ingredientes">
+        <ion-label>{{ ingrediente.nombre }}</ion-label>
+        <ion-buttons slot="end">
+          <ion-button size="small" (click)="editIngrediente(ingrediente)">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button size="small" color="danger" (click)="deleteIngrediente(ingrediente.id!)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  

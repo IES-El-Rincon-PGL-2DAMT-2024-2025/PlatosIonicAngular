@@ -1,3 +1,5 @@
+// app.component.ts
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  currentView: 'platos' | 'ingredientes' = 'platos';
+
   constructor() {}
+
+  showPlatos() {
+    this.currentView = 'platos';
+  }
+
+  showIngredientes() {
+    this.currentView = 'ingredientes';
+  }
 }

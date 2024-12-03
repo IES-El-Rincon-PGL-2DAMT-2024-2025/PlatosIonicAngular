@@ -3,6 +3,7 @@ import { PlatoService, Plato } from '../../services/plato.service';
 import { ModalController, AlertController } from '@ionic/angular';
 import { PlatoFormComponent } from '../plato-form/plato-form.component';
 
+
 @Component({
   selector: 'app-plato-list',
   templateUrl: './plato-list.component.html',
@@ -12,7 +13,7 @@ export class PlatoListComponent implements OnInit {
 
   platos: Plato[] = [];
 
-  constructor(
+  constructor (
     private platoService: PlatoService,
     private modalController: ModalController,
     private alertController: AlertController

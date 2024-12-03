@@ -1,0 +1,28 @@
+<!-- ingrediente-form.component.html -->
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        {{ ingrediente ? 'Editar Ingrediente' : 'Nuevo Ingrediente' }}
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <form [formGroup]="ingredienteForm">
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+  
+      <ion-button expand="block" (click)="saveIngrediente()" [disabled]="ingredienteForm.invalid">
+        Guardar
+      </ion-button>
+    </form>
+  </ion-content>
+  

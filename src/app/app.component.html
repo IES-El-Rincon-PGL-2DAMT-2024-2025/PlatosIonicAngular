@@ -1,1 +1,27 @@
-<app-plato-list></app-plato-list>
+<!-- app.component.html -->
+
+<ion-app>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Restaurante</ion-title>
+      </ion-toolbar>
+      <ion-segment value="{{ currentView }}">
+        <ion-segment-button value="platos" (click)="showPlatos()">
+          <ion-label>Platos</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="ingredientes" (click)="showIngredientes()">
+          <ion-label>Ingredientes</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-header>
+  
+    <ion-content>
+      <ng-container *ngIf="currentView === 'platos'">
+        <app-plato-list></app-plato-list>
+      </ng-container>
+      <ng-container *ngIf="currentView === 'ingredientes'">
+        <app-ingrediente-list></app-ingrediente-list>
+      </ng-container>
+    </ion-content>
+  </ion-app>
+  
