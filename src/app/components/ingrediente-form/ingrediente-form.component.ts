@@ -7,8 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ingrediente-form',
-  templateUrl: './ingrediente-form.component.html',
-  styleUrls: ['./ingrediente-form.component.scss'],
+  templateUrl: './ingrediente-form.component.html'
 })
 export class IngredienteFormComponent implements OnInit {
   @Input() ingrediente?: Ingrediente;

@@ -1,13 +1,9 @@
-<!-- plato-form.component.html -->
-
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      {{ plato ? 'Editar Plato' : 'Nuevo Plato' }}
-    </ion-title>
+    <ion-title>Crear Plato</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
-        <ion-icon name="close"></ion-icon>
+      <ion-button (click)="guardarPlato()" [disabled]="platoForm.invalid">
+        Guardar
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -31,16 +27,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Ingredientes</ion-label>
-      <ion-select formControlName="ingredientes" multiple="true" okText="Aceptar" cancelText="Cancelar">
-        <ion-select-option *ngFor="let ingrediente of ingredientesDisponibles" [value]="ingrediente">
-          {{ ingrediente.nombre }}
+      <ion-label>Cocinero</ion-label>
+      <ion-select formControlName="cocineroId" interface="popover">
+        <ion-select-option *ngFor="let cocinero of cocineros" [value]="cocinero.id">
+          {{ cocinero.nombre }}
         </ion-select-option>
       </ion-select>
     </ion-item>
-
-    <ion-button expand="block" (click)="savePlato()" [disabled]="platoForm.invalid">
-      Guardar
-    </ion-button>
   </form>
 </ion-content>

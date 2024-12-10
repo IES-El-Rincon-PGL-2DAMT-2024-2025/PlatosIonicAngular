@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{ cocinero ? 'Editar Cocinero' : 'Añadir Cocinero' }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismiss()">Cerrar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <form [formGroup]="cocineroForm" (ngSubmit)="saveCocinero()">
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input formControlName="nombre"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-footer>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button type="submit" [disabled]="cocineroForm.invalid">Guardar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-footer>
+    </form>
+  </ion-content>
+  

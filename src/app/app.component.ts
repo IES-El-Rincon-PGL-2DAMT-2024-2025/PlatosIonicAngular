@@ -1,16 +1,12 @@
-// app.component.ts
-
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  currentView: 'platos' | 'ingredientes' = 'platos';
-
-  constructor() {}
+  currentView: string = 'platos'; // Vista predeterminada
 
   showPlatos() {
     this.currentView = 'platos';
@@ -19,4 +15,10 @@ export class AppComponent {
   showIngredientes() {
     this.currentView = 'ingredientes';
   }
+
+  showCocineros() {
+    this.currentView = 'cocineros';
+  }
 }
+
+

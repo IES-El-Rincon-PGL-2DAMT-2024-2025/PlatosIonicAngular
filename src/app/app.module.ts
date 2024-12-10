@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), PlatosModule, RouterModule],
@@ -17,5 +16,3 @@ import { RouterModule } from '@angular/router';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-

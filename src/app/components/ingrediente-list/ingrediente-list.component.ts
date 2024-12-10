@@ -8,8 +8,7 @@ import { IngredienteFormComponent } from '../ingrediente-form/ingrediente-form.c
 
 @Component({
   selector: 'app-ingrediente-list',
-  templateUrl: './ingrediente-list.component.html',
-  styleUrls: ['./ingrediente-list.component.scss'],
+  templateUrl: './ingrediente-list.component.html'
 })
 export class IngredienteListComponent implements OnInit {
   ingredientes: Ingrediente[] = [];

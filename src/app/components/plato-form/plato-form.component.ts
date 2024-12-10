@@ -1,67 +1,54 @@
-// plato-form.component.ts
-
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CocineroService, Cocinero } from '../../services/cocinero.service';
 import { PlatoService, Plato } from '../../services/plato.service';
-import { IngredienteService, Ingrediente } from '../../services/ingrediente.service';
-import { ModalController } from '@ionic/angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-plato-form',
-  templateUrl: './plato-form.component.html',
-  styleUrls: ['./plato-form.component.scss'],
+  templateUrl: './plato-form.component.html'
 })
 export class PlatoFormComponent implements OnInit {
-  @Input() plato?: Plato;
+
   platoForm!: FormGroup;
-  ingredientesDisponibles: Ingrediente[] = [];
+  cocineros: Cocinero[] = [];
 
   constructor(
-    private platoService: PlatoService,
-    private ingredienteService: IngredienteService,
-    private modalController: ModalController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cocineroService: CocineroService,
+    private platoService: PlatoService
   ) {}
 
   ngOnInit() {
-    this.loadIngredientes();
-
     this.platoForm = this.formBuilder.group({
-      nombre: [this.plato?.nombre || '', Validators.required],
-      descripcion: [this.plato?.descripcion || '', Validators.required],
-      precio: [this.plato?.precio || '', [Validators.required, Validators.min(0)]],
-      ingredientes: [this.plato?.ingredientes || []],
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      precio: [0, [Validators.required, Validators.min(0)]],
+      cocineroId: [null, Validators.required]
+    });
+
+    this.loadCocineros();
+  }
+
+  loadCocineros() {
+    this.cocineroService.getCocineros().subscribe(cocineros => {
+      this.cocineros = cocineros;
     });
   }
 
-  loadIngredientes() {
-    this.ingredienteService.getIngredientes().subscribe((ingredientes) => {
-      this.ingredientesDisponibles = ingredientes;
-    });
-  }
-
-  savePlato() {
-    const data = this.platoForm.value;
-
-    if (this.plato) {
-      // Editar plato existente
-      const platoActualizado: Plato = {
-        ...this.plato,
-        ...data,
+  guardarPlato() {
+    if (this.platoForm.valid) {
+      const data = this.platoForm.value;
+      const plato: Plato = {
+        nombre: data.nombre,
+        descripcion: data.descripcion,
+        precio: data.precio,
+        cocinero: { id: data.cocineroId, nombre: '' } // solo necesitas el id
       };
 
-      this.platoService.updatePlato(platoActualizado).subscribe(() => {
-        this.modalController.dismiss(true);
-      });
-    } else {
-      // Crear nuevo plato
-      this.platoService.addPlato(data).subscribe(() => {
-        this.modalController.dismiss(true);
+      this.platoService.crearPlato(plato).subscribe((platoCreado) => {
+        console.log('Plato creado:', platoCreado);
+        // Aquí puedes navegar o resetear el formulario
       });
     }
-  }
-
-  dismiss() {
-    this.modalController.dismiss();
   }
 }

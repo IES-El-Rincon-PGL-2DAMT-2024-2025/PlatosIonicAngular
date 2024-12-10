@@ -4,14 +4,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Ingrediente } from './ingrediente.service';
+import { Cocinero } from './cocinero.service';
+
+
+
+
 
 export interface Plato {
   id?: number;
   nombre: string;
   descripcion: string;
   precio: number;
-  ingredientes?: Ingrediente[];
+  cocinero: Cocinero; // Debe contener al menos el id del cocinero
 }
 
 @Injectable({
@@ -30,7 +34,7 @@ export class PlatoService {
     return this.http.get<Plato>(`${this.apiUrl}/${id}`);
   }
 
-  addPlato(plato: Plato): Observable<Plato> {
+  crearPlato(plato: Plato): Observable<Plato> {
     return this.http.post<Plato>(this.apiUrl, plato);
   }
 
